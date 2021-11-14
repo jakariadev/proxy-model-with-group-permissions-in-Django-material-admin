@@ -268,15 +268,12 @@ class User(AbstractUser):
     phone = PhoneNumberField(null=True, blank=True, unique=True)
 
     # `sex` field required. It will be required when `avatar` defoult will be set
-    sex = models.CharField(max_length=1)
+    # sex = models.CharField(max_length=1,)
+    # ChoiceField(label="Receiver Gender", choices=choos_gender
+    sex = models.CharField("SexChoices", max_length=1,
+                           choices=SexChoices.choices, default=SexChoices.PRIVATE)
 
-    avatar = models.ImageField(
-        default='accounts/user/avatar/default.png',
-        upload_to=FileUploadTo(folder_name='avatar', plus_id=True),
-        height_field='avatar_height_field',
-        width_field='avatar_width_field',
-        blank=True
-    )
+
     avatar_height_field = models.PositiveSmallIntegerField()
     avatar_width_field = models.PositiveSmallIntegerField()
 
@@ -289,7 +286,13 @@ class User(AbstractUser):
     # this field will check whether user is verified
     # that means at least phone or email verified at current situation
     is_account_verified = models.BooleanField(default=False)
-
+    avatar = models.ImageField(
+        default='accounts/user/avatar/default.png',
+        upload_to=FileUploadTo(folder_name='avatar', plus_id=True),
+        height_field='avatar_height_field',
+        width_field='avatar_width_field',
+        blank=True
+    )
     # to track changes in model fields
     tracker = FieldTracker(fields=['types', 'phone', 'email', 'username'])
 

@@ -36,4 +36,5 @@ urlpatterns = [
     # path('user/login-api/',obtain_auth_token),
     # path('user/token/',MyTokenObtainPairView.as_view()),
     # path('user/token/refresh/',TokenRefreshView.as_view()),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
