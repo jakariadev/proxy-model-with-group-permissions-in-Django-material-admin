@@ -23,7 +23,7 @@
       <li class="nav-item dropdown mr-3">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      {{request.user.profile.user.username}} <img class="avatarimg" height="20" weight="20" src="{{request.user.profile.user.avatar.url}}" alt="PIMG"> </a>&nbsp;
+      {{request.user.profile.user.username}} <img class="avatarimg" src="{{request.user.profile.user.avatar.url}}" alt="PIMG"> </a>&nbsp;
       <div class="dropdown-menu" aria-labelledby="nabbarDropdown">
         <a class="dropdown-item" href="{% url 'accounts:profile' %}">Profile</a>
         <div class="dropdown-divider"></div>
