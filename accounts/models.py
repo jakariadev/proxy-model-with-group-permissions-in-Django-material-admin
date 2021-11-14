@@ -325,6 +325,8 @@ class Address(models.Model):
     history = HistoricalRecords()
     icon_name = 'place'
 
+    def __str__(self):
+        return self.city
 
 YEAR_CHOICES = [(r, r) for r in range(1984, datetime.date.today().year+1)]
 
@@ -344,13 +346,20 @@ class Education(models.Model):
     description = models.CharField(max_length=255, blank=True, null=True)
     history = HistoricalRecords()
 
+    def __str__(self):
+        return self.degree
+
 
 class ControllerMore(TimeStampedModel):
     user = models.OneToOneField(
         User, related_name='controllermore', on_delete=models.CASCADE)
     designation = models.CharField(max_length=100, null=True, blank=True)
+    
     is_active = models.BooleanField(default=True)
     history = HistoricalRecords()
+
+    def __str__(self):
+        return self.user.username + "-controller & userid is: " + str(self.user.id)
 
 
 class Controller(User):
@@ -370,12 +379,23 @@ class Controller(User):
         proxy = True
 
 
+def user_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    return 'resume/user_{0}/{1}'.format(instance.user.id, filename)
+
 class TeacherMore(TimeStampedModel):
     user = models.OneToOneField(
         User, related_name='teachermore', on_delete=models.CASCADE)
     designation = models.CharField(max_length=100, null=True, blank=True)
+    expert_in = models.CharField(max_length=50, blank=True, null=True)
+    last_institution = models.CharField(max_length=50, blank=True, null=True)
+    resume = models.FileField(upload_to=user_directory_path, default=None)
+
     is_active = models.BooleanField(default=True)
     history = HistoricalRecords()
+
+    def __str__(self):
+        return self.user.username + "-teacher & userid is: " + str(self.user.id)
 
 
 class Teacher(User):
@@ -398,10 +418,20 @@ class Teacher(User):
 class StudentMore(TimeStampedModel):
     user = models.OneToOneField(
         User, related_name='studentmore', on_delete=models.CASCADE)
-    designation = models.CharField(max_length=100, null=True, blank=True)
+
+    level = models.CharField(max_length=50, blank=True, null=True) 
+    current_institution =  models.CharField(max_length=100, blank=True, null=True)
+    father_name = models.CharField(max_length=50, blank=True, null=True)
+    mother_name = models.CharField(max_length=50, blank=True, null=True)
+    father_occupation = models.CharField(max_length=50, blank=True, null=True)
+    mother_occupation = models.CharField(max_length=50, blank=True, null=True)
+    guardian = models.CharField(max_length=50, blank=True, null=True)
+    guardian_raltionship = models.CharField(max_length=50, blank=True, null=True)
     is_active = models.BooleanField(default=True)
     history = HistoricalRecords()
 
+    def __str__(self):
+        return self.user.username + "-student & userid is: " + str(self.user.id)
 
 class Student(User):
     objects = StudentManager()
@@ -423,10 +453,15 @@ class Student(User):
 class GuardianMore(TimeStampedModel):
     user = models.OneToOneField(
         User, related_name='guardianmore', on_delete=models.CASCADE)
-    designation = models.CharField(max_length=100, null=True, blank=True)
+    occupation = models.CharField(max_length=100, null=True, blank=True)
+    yearly_income = models.FloatField(default=0.00)
+
+    #common for all models
     is_active = models.BooleanField(default=True)
     history = HistoricalRecords()
 
+    def __str__(self):
+        return self.user.username + "-guardian & userid is: " + str(self.user.id)
 
 class Guardian(User):
     objects = GuardianManager()
@@ -451,6 +486,9 @@ class EmployeeMore(TimeStampedModel):
     designation = models.CharField(max_length=100, null=True, blank=True)
     is_active = models.BooleanField(default=True)
     history = HistoricalRecords()
+
+    def __str__(self):
+        return self.user.username + "-employee & userid is: " + str(self.user.id)
 
 
 class Employee(User):
