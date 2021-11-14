@@ -30,7 +30,7 @@ User = get_user_model()
 def sign_up(request):
     form = SignUpForm()
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
+        form = SignUpForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, "Account Created Successfully!")
@@ -49,8 +49,8 @@ def login_user(request):
             if user is not None:
                 login(request, user)
                 messages.warning(request, "logged in Successfully!")
-                return HttpResponse("logged in yeh")
-                # return HttpResponseRedirect(reverse('institution:home'))
+                # return HttpResponse("logged in yeh")
+                return HttpResponseRedirect(reverse('u_dashboard:uhome'))
 
     return render(request, 'accounts/login.html', context={'form': form})
 
@@ -59,8 +59,8 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     messages.warning(request, "You are Logged out !")
-    return HttpResponse("logged out yeh")
-    # return HttpResponseRedirect(reverse('institution:home'))
+    # return HttpResponse("logged out yeh")
+    return HttpResponseRedirect(reverse('u_dashboard:uhome'))
 
 
 #profile view

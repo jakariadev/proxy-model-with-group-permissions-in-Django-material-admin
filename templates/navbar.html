@@ -2,8 +2,8 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-    {% comment %} <a class="navbar-brand" href="{% url 'app_shop:home' %}"> <b>EMS</b> </a> {% endcomment %}
-    <a class="navbar-brand" href="#"> <b>EMS</b> </a>
+    <a class="navbar-brand" href="{% url 'u_dashboard:uhome' %}"> <b>EMS</b> </a>
+
 
     <button type="button" class="navbar-toggler" data-toggle="collapse"
     data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
@@ -13,27 +13,19 @@
 
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
-       {% if request.user.is_authenticated %}
+       
+       {% if request.user.is_authenticated and request.user.is_superuser %}
       <li class="nav-item">
-        {% comment %} <a href="{% url 'app_Order:cart' %}" class="nav-link"> {% endcomment %}
-        {% comment %} <a href="{% url 'app_Order:cart' %}" class="nav-link"> {% endcomment %}
-        {% comment %} <a href="{% url 'app_Order:cart' %}" class="nav-link"> {% endcomment %}
-          {% comment %} <a href="{% url 'app_order:cart' %}" class="nav-link">
-          <i class="fa fa-shopping-cart"></i>Cart <span class="badge badge-light">{{ request.user | cart_total }}</span>
-          <span class="badge badge-light">{{ request.user }}</span> {% 
-          
-        </a> {% endcomment %}
-      </li>
+        <a href="/admin/" class="nav-link"><i class="fas fa-users-cog"></i>Djadmin</a>
+      </li> {%  endif %}
+      {% if request.user.is_authenticated %}
 
       <li class="nav-item dropdown mr-3">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <i class="fas fa-user-tie"></i>
-      {{request.user.profile.username}}</a>
+      {{request.user.profile.user.username}} <img class="avatarimg" height="20" weight="20" src="{{request.user.profile.user.avatar.url}}" alt="PIMG"> </a>&nbsp;
       <div class="dropdown-menu" aria-labelledby="nabbarDropdown">
         <a class="dropdown-item" href="{% url 'accounts:profile' %}">Profile</a>
-        {% comment %} <a class="dropdown-item" href="{% url 'app_login:profile' %}">Profile</a> {% endcomment %}
-        {% comment %} <a class="dropdown-item" href="{% url 'App_Payment:orders' %}">Orders</a> {% endcomment %}
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a>
       </div>

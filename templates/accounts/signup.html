@@ -3,11 +3,27 @@
 {% block title_block %} Create New Account {% endblock %}
  {% block content %}
 <h2>Create New Account:</h2>
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
   {{ form|crispy }}
-  {% csrf_token %}
+  <img id="blah" src="#"/>
   <button type="submit" class="btn btn-success btn-sm">Create Account</button>
 </form>
+ {% block scripts %}
+
+ {% comment %} preview uploading image {% endcomment %}
+<script>
+
+id_avatar.onchange = evt => {
+  const [file] = id_avatar.files
+  if (file) {
+    blah.src = URL.createObjectURL(file)
+  }
+}
+
+</script>
+{% endblock scripts %}
+
 
 <br>
 <p>Already have an account? <a href="{% url 'accounts:login' %}">Login Here</a></p>
