@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # thirgparty apps
+    'crispy_forms',
     'django_extensions',
     'simple_history',
     'rest_framework',
@@ -67,7 +68,9 @@ INSTALLED_APPS = [
 
     # local apps
     'accounts',
+    'u_dashboard',
 ]
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -199,6 +202,13 @@ MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+LOGIN_URL = '/accounts/login/'
+
+
+
+
+
+
 MATERIAL_ADMIN_SITE = {
     'HEADER':  ('Education Management System'),  # Admin site header
     'TITLE':  ('education management system'),  # Admin site title
@@ -259,3 +269,5 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+
+

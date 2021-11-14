@@ -18,6 +18,7 @@ djangorestframework-simplejwt = "*"
 Django = "==3.2"
 Werkzeug = "*"
 Pillow = "*"
+django-crispy-forms = "*"
 
 [dev-packages]
 

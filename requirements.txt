@@ -11,3 +11,4 @@ Pillow
 python-decouple
 djangorestframework
 djangorestframework_simplejwt
+django-crispy-forms
