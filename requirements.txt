@@ -7,3 +7,5 @@ django-phonenumber-field
 phonenumbers
 django-simple-history
 django-material-admin
+djangorestframework
+djangorestframework_simplejwt
