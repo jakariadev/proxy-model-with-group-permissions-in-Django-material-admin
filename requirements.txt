@@ -9,3 +9,5 @@ django-simple-history
 django-material-admin
 Pillow
 python-decouple
+djangorestframework
+djangorestframework_simplejwt
