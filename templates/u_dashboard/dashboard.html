@@ -4,11 +4,17 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="display-4 text-success">Education Management System</h1>
-    <p class="lead text-info">Welcome to Educational site of Bangladesh</p>
+    {% if request.user.is_authenticated %}
+    <p class="lead text-info">Welcome to <b style="color:darkgoldenrod; font-size:20px;">{ Dashboard }</b> of EMS </p>
+    {% endif %}
+    
     {% if user.is_superuser %}
-        <h3 class="display-6">Hellow- {{request.user.profile.user.username}}...<br> You are admin</h3>
+        <h3 class="display-6">Hellow- {{request.user.profile.user.username}}...<b> You are admin</b></h3>
+        <a href="#" class="btn btn-info">Add Institute</a>
+        
     {% elif request.user.is_authenticated %}
     <h3 class="display-6">Hellow- {{request.user.profile.user.username}}</h3>
+    <a href="#" class="btn btn-info">Add Institute</a>
 
     {% else %}
     <h3 class="display-6">You are not logged in yet</h3>
