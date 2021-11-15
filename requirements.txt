@@ -1,0 +1,14 @@
+django==3.2
+django_extensions==3.1.5
+dj-database-url
+psycopg2-binary
+django-model-utils
+django-phonenumber-field
+phonenumbers
+django-simple-history
+django-material-admin
+Pillow
+python-decouple
+djangorestframework
+djangorestframework_simplejwt
+django-crispy-forms
