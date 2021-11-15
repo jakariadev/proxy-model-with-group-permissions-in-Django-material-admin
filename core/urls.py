@@ -30,6 +30,7 @@ urlpatterns = [
 
     # for django login/signup page
     path('user/', include('accounts.urls')),
+    path('institute/', include('institude.urls')),
 
 
 
