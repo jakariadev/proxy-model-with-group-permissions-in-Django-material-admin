@@ -10,7 +10,7 @@
 
     {% if user.is_superuser %}
         <h3 class="display-6">Hellow- {{request.user.profile.user.username}}...<b> You are admin</b></h3>
-        <a href="#" class="btn btn-info">Add Institute</a>
+        <a href="{% url 'institute_create' %}" class="btn btn-info">Add Institute</a>
         
     {% elif request.user.is_authenticated %}
     <h3 class="display-6">Hellow- {{request.user.profile.user.username}}</h3>
