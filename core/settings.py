@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     # local apps
     'accounts',
     'u_dashboard',
+    'institude',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
