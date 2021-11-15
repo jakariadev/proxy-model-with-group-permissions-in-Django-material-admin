@@ -7,7 +7,7 @@
     {% if request.user.is_authenticated %}
     <p class="lead text-info">Welcome to <b style="color:darkgoldenrod; font-size:20px;">{ Dashboard }</b> of EMS </p>
     {% endif %}
-    
+
     {% if user.is_superuser %}
         <h3 class="display-6">Hellow- {{request.user.profile.user.username}}...<b> You are admin</b></h3>
         <a href="#" class="btn btn-info">Add Institute</a>
@@ -19,6 +19,8 @@
     {% else %}
     <h3 class="display-6">You are not logged in yet</h3>
     {% endif %}
+
+
   </div>
 </div>
 

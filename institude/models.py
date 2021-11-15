@@ -57,6 +57,9 @@ class Institude(models.Model):
     # controllers = models.ManyToManyField(User, related_name="controllers_of", blank=True)
     # groups = models.ManyToManyField(User, related_name="groups_of", blank=True) 
 
+
+
+
     def __str__(self):
         return str(self.name)
     def save(self, *args, **kwargs):
@@ -66,3 +69,7 @@ class Institude(models.Model):
         Group.objects.create(name=str(self.name)+"_controller")
         Group.objects.create(name=str(self.name)+"_employees")
         Group.objects.create(name=str(self.name)+"_guardians")
+        # Permission.objects.create(name=str(self.name)+"_guardians")
+
+
+
