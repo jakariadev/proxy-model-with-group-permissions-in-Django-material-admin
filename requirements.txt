@@ -8,4 +8,4 @@ phonenumbers
 django-simple-history
 django-material-admin
 djangorestframework
-djangorestframework_simplejwt
+djangorestframework-simplejwt
