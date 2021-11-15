@@ -25,9 +25,15 @@ from .views import MyTokenObtainPairView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('u_dashboard.urls')),
     path('api/', include('rest_framework.urls')),
+
+    # for django login/signup page
     path('user/', include('accounts.urls')),
-    path('user/login-api/',obtain_auth_token),
-    path('user/token/',MyTokenObtainPairView.as_view()),
-    path('user/token/refresh/',TokenRefreshView.as_view()),
+
+
+
+    # path('user/login-api/',obtain_auth_token),
+    # path('user/token/',MyTokenObtainPairView.as_view()),
+    # path('user/token/refresh/',TokenRefreshView.as_view()),
 ]
