@@ -61,8 +61,8 @@ class Institude(models.Model):
         return str(self.name)
     def save(self, *args, **kwargs):
         super(Institude, self).save(*args, **kwargs)
-        Group.objects.create(name=str(self.name)+"_students")
-        Group.objects.create(name=str(self.name)+"_teachers")
-        Group.objects.create(name=str(self.name)+"_controller")
-        Group.objects.create(name=str(self.name)+"_employees")
-        Group.objects.create(name=str(self.name)+"_guardians")
+        Group.objects.create(name=str(self.name)+"_"+str(self.id)+"_students")
+        Group.objects.create(name=str(self.name)+"_"+str(self.id)+"_teachers")
+        Group.objects.create(name=str(self.name)+"_"+str(self.id)+"_controller")
+        Group.objects.create(name=str(self.name)+"_"+str(self.id)+"_employees")
+        Group.objects.create(name=str(self.name)+"_"+str(self.id)+"_guardians")

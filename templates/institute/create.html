@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title_block %} Create New Institute {% endblock %}
+ {% block content %}
+<h2>Create New Institute:</h2>
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+  {{ form|crispy }}
+  {% comment %} <img id="blah" src="#"/> {% endcomment %}
+  <button type="submit" class="btn btn-success btn-sm">Create Institute</button>
+</form>
+ {% block scripts %}
+
+<script>
+
+{% comment %} id_avatar.onchange = evt => {
+  const [file] = id_avatar.files
+  if (file) {
+    blah.src = URL.createObjectURL(file)
+  }
+} {% endcomment %}
+
+</script>
+{% endblock scripts %}
+{% endblock content %}
