@@ -1,8 +1,11 @@
+from django.contrib.auth.models import Group, ContentType, Permission
 from django.contrib.postgres.fields.array import ArrayField
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 from django.db.models.deletion import SET_NULL
+from django.contrib.contenttypes.models import ContentType
+
 # Create your models here.
 User = get_user_model()
 class PaymentStatus(models.Model):
@@ -69,3 +72,16 @@ class Institude(models.Model):
         Group.objects.create(name=str(self.name)+"_"+str(self.id)+"_controller")
         Group.objects.create(name=str(self.name)+"_"+str(self.id)+"_employees")
         Group.objects.create(name=str(self.name)+"_"+str(self.id)+"_guardians")
+
+        # Create contenttype and permissions, replace app_label and model to fit your needs
+        # content_type = ContentType.objects.get(app_label='institude', model='Institude')
+        
+        content_type = ContentType.objects.get(
+            app_label__iexact="institude", model__iexact="Institude")
+
+        permission = Permission.objects.create(codename=str(self.name)+'_can_edit_address',
+                                            name='can edit address of institute',
+                                            content_type=content_type)
+        permission = Permission.objects.create(codename=str(self.name)+'_can_add_eiin',
+                                            name='can edit eiin of institute',
+                                            content_type=content_type)

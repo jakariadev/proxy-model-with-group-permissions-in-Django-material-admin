@@ -11,7 +11,7 @@
     
     {% if user.is_superuser  %}
         <h3 class="display-6">Hellow- {{request.user.profile.user.username}}...<b> You are admin</b></h3>
-        <a href="#" class="btn btn-info">Add Institute</a>
+        <a href="{% url 'institute_create' %}" class="btn btn-info">Add Institute</a>
         <h4>Your Instituitions</h4>
         {% for item in ins %}
         <div class="mt-2">
@@ -21,7 +21,7 @@
     {% elif user.is_authenticated and not status %}
     <h3 class="display-6">Hello- {{request.user.profile.user.username}}</h3>
 
-    <a href="#" class="btn btn-info">Add Institute</a>
+    <a href="{% url 'institute_create' %}" class="btn btn-info">Add Institute</a>
     {% else %}
     <h3 class="display-6">You are not logged in yet</h3>
     {% endif %}

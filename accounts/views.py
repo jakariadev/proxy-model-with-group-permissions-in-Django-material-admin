@@ -1,3 +1,4 @@
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from rest_framework import status
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
@@ -38,6 +39,9 @@ def sign_up(request):
     return render(request, 'accounts/signup.html', context={'form': form})
 
 
+
+
+@csrf_exempt #without this get error to show username in toast message box 
 def login_user(request):
     form = AuthenticationForm()
     if request.method == 'POST':
@@ -48,7 +52,7 @@ def login_user(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                messages.success(request, "logged in Successfully!")
+                messages.success(request, username +" "+"logged in Successfully!")
                 # return HttpResponse("logged in yeh")
                 return HttpResponseRedirect(reverse('u_dashboard:uhome'))
 

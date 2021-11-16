@@ -1,8 +1,8 @@
 from django.http.response import HttpResponse
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, reverse
 from .forms import InstituteForm
 from .models import *
-from django.contrib import messages 
+from django.contrib import messages
 # Create your views here.
 
 def institute_create(request):
@@ -18,7 +18,9 @@ def institute_create(request):
             print(e)
             status = None
         if not status:
-            return HttpResponse("You Don't have permissions! Please Pay First!")
+            messages.warning(request, "You don't have permissions! Pay first")
+            # messages.info(request, "You are Logged out !")
+            return HttpResponseRedirect(reverse('u_dashboard:uhome'))
         if form.errors:
             for field in form:
                 for error in field.errors:
