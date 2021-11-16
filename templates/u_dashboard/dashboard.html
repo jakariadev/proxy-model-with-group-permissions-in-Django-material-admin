@@ -8,21 +8,25 @@
     <p class="lead text-info">Welcome to <b style="color:darkgoldenrod; font-size:20px;">{ Dashboard }</b> of EMS </p>
     {% endif %}
     
-    {% if user.is_superuser %}
+    {% if user.is_superuser  %}
         <h3 class="display-6">Hellow- {{request.user.profile.user.username}}...<b> You are admin</b></h3>
         <a href="#" class="btn btn-info">Add Institute</a>
-        
-    {% elif request.user.is_authenticated %}
-    <h3 class="display-6">Hellow- {{request.user.profile.user.username}}</h3>
+        <h4>Your Instituitions</h4>
+        {% for item in ins %}
+        <div class="mt-2">
+            <a href="{% url 'u_dashboard:groups_list' id=item.id %}" class="btn btn-info">{{item.name}}</a>
+        </div>
+        {% endfor %}
+    {% elif user.is_authenticated and not status %}
+    <h3 class="display-6">Hello- {{request.user.profile.user.username}}</h3>
     <a href="#" class="btn btn-info">Add Institute</a>
-
     {% else %}
     <h3 class="display-6">You are not logged in yet</h3>
     {% endif %}
   </div>
 </div>
 
- 
+ {% block dashboard %}{% endblock dashboard %}
  
 </div>
 

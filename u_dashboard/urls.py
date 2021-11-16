@@ -3,5 +3,7 @@ from django.urls import path
 from .views import *
 app_name ="u_dashboard"
 urlpatterns = [
-    path('', DashboardView.as_view(), name='uhome'),
+    path('',dashboard, name='uhome'),
+    path('groups/<int:id>/',groups_list, name='groups_list'),
+    path('create_user/<int:id>/',create_user, name='create_user'),
 ]
