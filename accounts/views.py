@@ -48,7 +48,7 @@ def login_user(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                messages.warning(request, "logged in Successfully!")
+                messages.success(request, "logged in Successfully!")
                 # return HttpResponse("logged in yeh")
                 return HttpResponseRedirect(reverse('u_dashboard:uhome'))
 
@@ -58,7 +58,7 @@ def login_user(request):
 @login_required
 def logout_user(request):
     logout(request)
-    messages.warning(request, "You are Logged out !")
+    messages.info(request, "You are Logged out !")
     # return HttpResponse("logged out yeh")
     return HttpResponseRedirect(reverse('u_dashboard:uhome'))
 

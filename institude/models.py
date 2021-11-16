@@ -57,6 +57,9 @@ class Institude(models.Model):
     # controllers = models.ManyToManyField(User, related_name="controllers_of", blank=True)
     # groups = models.ManyToManyField(User, related_name="groups_of", blank=True) 
 
+
+
+
     def __str__(self):
         return str(self.name)
     def save(self, *args, **kwargs):
