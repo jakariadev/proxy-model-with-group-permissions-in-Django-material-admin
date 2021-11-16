@@ -57,4 +57,16 @@ def create_user(request, id):
             messages.success(request, "user created")
             grp.user_set.add(user)
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+def add_user(request, id):
+    grp = Group.objects.get(id=id)
+    if request.method == 'POST':
+        username = request.POST.get('username', None)
+        if username:
+            if User.objects.filter(username = username).exists():
+                user = User.objects.get(username = username)
+                grp.user_set.add(user)
+                messages.success(request, "user added to group")
+            else:
+                messages.warning(request, "No user found with this username")
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 

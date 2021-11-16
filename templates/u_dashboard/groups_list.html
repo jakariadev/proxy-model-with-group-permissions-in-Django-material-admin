@@ -6,8 +6,9 @@ Your Groups
 {% for item in groups %}
 <div class="mt-2">
     <a class="btn btn-secondary mr-3">{{item.name}}</a>
-    <a href="{% url 'u_dashboard:groups_list' id=item.id %}" class="mr-3 btn btn-info">Add Member</a>
-    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{item.id}}">
+  Add User
+</button>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter{{item.id}}">
   Create User
 </button>
@@ -26,6 +27,32 @@ Your Groups
         <div class="modal-body">
             {% csrf_token %}
             {{ form|crispy }}
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Create And ADD</button>
+        </div>
+    </form>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal{{item.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle{{item.id}}" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle{{item.id}}">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <form method="POST" action="{% url 'u_dashboard:add_user' id=item.id %}" enctype="multipart/form-data">
+        <div class="modal-body">
+            {% csrf_token %}
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input name="username" type="text" class="form-control">
+          </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
