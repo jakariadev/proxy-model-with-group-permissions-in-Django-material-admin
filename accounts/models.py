@@ -701,3 +701,5 @@ def post_save_user_types_handler(sender, instance, created, *args, **kwargs):
                         obj.save()
                     except EmployeeMore.DoesNotExist:
                         pass
+
+
