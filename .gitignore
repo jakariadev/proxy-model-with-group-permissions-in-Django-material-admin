@@ -165,4 +165,8 @@ cython_debug/
 env/
 #vscode
 .vscode/
+<<<<<<< HEAD
 /.vscode
+=======
+/.vscode
+>>>>>>> 6926220 (gitignore added)
