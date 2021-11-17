@@ -73,7 +73,7 @@ Make sure Python and pip are available on the system.
 
 
 
-
+```
 username:fahad12
 email:m6@12g.com
 first_name:Md fahad 
@@ -83,3 +83,4 @@ password2:123bal123bal@
 phone:+8801702929340
 sex:M
 avatar:img.jpg
+```
