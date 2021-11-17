@@ -46,6 +46,16 @@ Make sure Python and pip are available on the system.
 
     After activating virtual environment. 
     Simply run ``` pip install -r requirements.txt ``` to install all the dependencies.
+    
+    ##### Postgre config or reset
+    
+    pgadmin help: https://www.tecmint.com/install-postgresql-and-pgadmin-in-ubuntu/
+    
+    ##### pgadmin web
+    # for reset email and pass
+    $ sudo mv /var/lib/pgadmin/pgadmin4.db /tmp
+    $ sudo /usr/pgadmin4/bin/setup-web.sh
+
 
 ---
 
