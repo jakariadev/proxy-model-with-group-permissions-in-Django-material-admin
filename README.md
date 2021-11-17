@@ -78,8 +78,8 @@ username:fahad12
 email:m6@12g.com
 first_name:Md fahad 
 last_name:hossain
-password:123bal123bal@
-password2:123bal123bal@
+password:abcgdhsgd122@asss1123
+password2:abcgdhsgd122@asss1123
 phone:+8801702929340
 sex:M
 avatar:img.jpg
