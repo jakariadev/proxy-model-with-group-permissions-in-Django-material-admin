@@ -60,29 +60,41 @@ class Institude(models.Model):
     # controllers = models.ManyToManyField(User, related_name="controllers_of", blank=True)
     # groups = models.ManyToManyField(User, related_name="groups_of", blank=True) 
 
-
-
+    __original_name = None
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.__original_name = self.name
 
     def __str__(self):
         return str(self.name)
+
     def save(self, *args, **kwargs):
         super(Institude, self).save(*args, **kwargs)
-        Group.objects.create(name=str(self.name)+"_"+str(self.id)+"_students")
-        Group.objects.create(name=str(self.name)+"_"+str(self.id)+"_teachers")
-        Group.objects.create(name=str(self.name)+"_"+str(self.id)+"_controller")
-        Group.objects.create(name=str(self.name)+"_"+str(self.id)+"_employees")
-        Group.objects.create(name=str(self.name)+"_"+str(self.id)+"_guardians")
+        if self.name == self.__original_name:
+            pass
+        if InstituteGroups.objects.filter(institutes = self).count() < 5:
+            InstituteGroups.objects.get_or_create(name=str(self.name)+"_"+str(self.id)+"_students", institutes = self)
+            InstituteGroups.objects.get_or_create(name=str(self.name)+"_"+str(self.id)+"_teachers", institutes = self)
+            InstituteGroups.objects.get_or_create(name=str(self.name)+"_"+str(self.id)+"_controller", institutes = self)
+            InstituteGroups.objects.get_or_create(name=str(self.name)+"_"+str(self.id)+"_employees", institutes = self)
+            InstituteGroups.objects.get_or_create(name=str(self.name)+"_"+str(self.id)+"_guardians", institutes = self)
+
+        # Group.objects.create(name=str(self.name)+"_"+str(self.id)+"_students")
+        # Group.objects.create(name=str(self.name)+"_"+str(self.id)+"_teachers")
+        # Group.objects.create(name=str(self.name)+"_"+str(self.id)+"_controller")
+        # Group.objects.create(name=str(self.name)+"_"+str(self.id)+"_employees")
+        # Group.objects.create(name=str(self.name)+"_"+str(self.id)+"_guardians")
 
         # Create contenttype and permissions, replace app_label and model to fit your needs
-        # content_type = ContentType.objects.get(app_label='institude', model='Institude')
+        content_type = ContentType.objects.get(app_label='institude', model='Institude')
         
-        content_type = ContentType.objects.get(
+        content_type = ContentType.objects.get_or_create(
             app_label__iexact="institude", model__iexact="Institude")
 
-        permission = Permission.objects.create(codename=str(self.name)+'_can_edit_address',
+        permission, created = Permission.objects.get_or_create(codename=str(self.name)+'_can_edit_address',
                                             name='can edit address of institute',
                                             content_type=content_type)
-        permission = Permission.objects.create(codename=str(self.name)+'_can_add_eiin',
+        permission, created = Permission.objects.get_or_create(codename=str(self.name)+'_can_add_eiin',
                                             name='can edit eiin of institute',
                                             content_type=content_type)
 
