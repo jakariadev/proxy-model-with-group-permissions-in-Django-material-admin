@@ -54,8 +54,13 @@ Make sure Python and pip are available on the system.
     ##### pgadmin web
     # for reset email and pass
     ``` $ sudo mv /var/lib/pgadmin/pgadmin4.db /tmp ```
+    
     ``` $ sudo /usr/pgadmin4/bin/setup-web.sh ```
 
+#### Domain and sub domain configuration
+- Type in ubuntu terminal ``` sudo nano /etc/hosts ```
+- Or in Windows edit your host file in etc folder in c-drive.
+- Then add & save e.g. ``` 127.0.0.1    www.jakariaPUST.com ```
 
 
 
