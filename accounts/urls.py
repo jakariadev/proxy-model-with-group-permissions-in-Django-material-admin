@@ -1,10 +1,5 @@
 from django.urls import path
 from .views import *
-# urlpatterns = [
-#       # for rest api
-#     path('register/',registrationAPI),
-
-# ]
 
 app_name = 'accounts'
 
@@ -13,6 +8,8 @@ urlpatterns = [
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
     path('profile/', user_profile, name='profile'),
+    # registration api
+    path('register/',registrationAPI),
 ]
 
 
