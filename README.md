@@ -66,3 +66,20 @@ Make sure Python and pip are available on the system.
 - [@Jakaria](https://facebook.com/jakaria.pust)
 
 [Back To The Top](#proxy-model-with-group-permissions-in-Django-material-admin)
+
+
+
+
+
+
+
+
+username:fahad12
+email:m6@12g.com
+first_name:Md fahad 
+last_name:hossain
+password:123bal123bal@
+password2:123bal123bal@
+phone:+8801702929340
+sex:M
+avatar:img.jpg
