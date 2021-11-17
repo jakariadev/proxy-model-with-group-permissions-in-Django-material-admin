@@ -53,11 +53,9 @@ Make sure Python and pip are available on the system.
     
     ##### pgadmin web
     # for reset email and pass
-    $ sudo mv /var/lib/pgadmin/pgadmin4.db /tmp
-    $ sudo /usr/pgadmin4/bin/setup-web.sh
+    ``` $ sudo mv /var/lib/pgadmin/pgadmin4.db /tmp ```
+    ``` $ sudo /usr/pgadmin4/bin/setup-web.sh ```
 
-
----
 
 
 
