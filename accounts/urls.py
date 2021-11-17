@@ -9,7 +9,7 @@ urlpatterns = [
     path('logout/', logout_user, name='logout'),
     path('profile/', user_profile, name='profile'),
     # registration api
-    path('register/',registrationAPI),
+    path('register/',RegisterView.as_view()),
 ]
 
 
