@@ -5,9 +5,9 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 from django.db.models.deletion import SET_NULL
 from django.contrib.contenttypes.models import ContentType
-
-# Create your models here.
+from django.contrib.auth.models import Group
 User = get_user_model()
+
 class PaymentStatus(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="payment_status")
 
@@ -85,3 +85,20 @@ class Institude(models.Model):
         permission = Permission.objects.create(codename=str(self.name)+'_can_add_eiin',
                                             name='can edit eiin of institute',
                                             content_type=content_type)
+
+
+class InstituteGroupsManager(models.Manager):
+    def get_query_set(self):
+        return super(InstituteGroupsManager, self).get_query_set().filter(student__enrolled=True).distinct()
+class InstituteGroups(Group):
+    institutes = models.ForeignKey(Institude, on_delete=models.CASCADE, related_name='grps')
+
+    objects = models.Manager()
+    has_students = InstituteGroupsManager()
+
+    class Meta:
+        verbose_name_plural = "Institute_Groups"
+        ordering = ['name']
+
+    def __unicode__(self):
+        return self.name
