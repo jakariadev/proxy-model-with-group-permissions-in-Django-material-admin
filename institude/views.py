@@ -1,5 +1,5 @@
 from django.http.response import HttpResponse
-from django.shortcuts import render, HttpResponseRedirect, reverse
+from django.shortcuts import redirect, render, HttpResponseRedirect, reverse
 from .forms import InstituteForm
 from .models import *
 from django.contrib import messages
@@ -37,3 +37,12 @@ def institute_create(request):
         'form': InstituteForm()
     }
     return render(request, 'institute/create.html', context)
+
+def create_group(request, id):
+    inst= Institude.objects.get(id=id)
+    if request.method == "POST":
+        name = request.POST.get('name',None)
+        grp = InstituteGroups.objects.create(name=name, institutes = inst)
+        messages.success(request, "Group Created Successfully!")
+        # return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        return redirect('u_dashboard:groups_list', id=inst.id)

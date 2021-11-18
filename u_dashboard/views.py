@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 from django.shortcuts import render, HttpResponseRedirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from institude.models import Institude
+from institude.models import Institude, InstituteGroups
 
 
 # class DashboardView(TemplateView):
@@ -33,10 +33,11 @@ def dashboard(request):
 
 def groups_list(request, id):
     in_need = Institude.objects.get(id=id)
-    groups = Group.objects.filter(name__istartswith=in_need.name)
+    groups = InstituteGroups.objects.filter(institutes=in_need)
     template_name = 'u_dashboard/groups_list.html'
     context={
         'groups':groups,
+        'id':id,
         'form' : SignUpForm()
     }
     return render(request, template_name, context)
