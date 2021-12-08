@@ -74,6 +74,7 @@ Make sure Python and pip are available on the system.
     ```sudo vim /etc/postgresql/12/main/pg_hba.conf```
     ##### Restarting: 
     ```sudo systemctl restart postgresql```
+    
     ------------------------------------------------
     ##### pgadmin web
     ##### Install pgadmin4 in ubuntu:
