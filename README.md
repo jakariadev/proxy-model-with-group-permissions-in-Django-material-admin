@@ -46,6 +46,7 @@ Make sure Python and pip are available on the system.
     
     ##### Postgre config or reset
     ``` sudo apt update```
+    
     ``` sudo apt install postgresql ```
     ##### checking active or not:
     ```
@@ -56,8 +57,11 @@ Make sure Python and pip are available on the system.
     ```sudo pg_isready```
     ##### Creating Database in PostgreSQL
     ```sudo su - postgres```
+  
     ```psql```
+    
     - Now create a new database and a user using the following commands.
+    
     - postgres#: 
     ```
     CREATE USER jakaria WITH PASSWORD 'Jakariapassword';
@@ -65,6 +69,7 @@ Make sure Python and pip are available on the system.
     GRANT ALL PRIVILEGES ON DATABASE jakariadb to jakaria;
     \q
     ```
+    
     ##### Configuring PostgreSQL Client Authentication
     ```sudo vim /etc/postgresql/12/main/pg_hba.conf```
     ##### Restarting: 
