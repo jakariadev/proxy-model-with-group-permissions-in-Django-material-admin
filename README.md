@@ -87,9 +87,10 @@ Make sure Python and pip are available on the system.
     
  
     ##### for reset email and pass
-    ``` $ sudo mv /var/lib/pgadmin/pgadmin4.db /tmp ```
-    
-    ``` $ sudo /usr/pgadmin4/bin/setup-web.sh ```
+    ```
+    sudo mv /var/lib/pgadmin/pgadmin4.db /tmp
+    sudo /usr/pgadmin4/bin/setup-web.sh
+    ```
     
     ##### Run in browser
     ```http://127.0.0.1/pgadmin4/```
